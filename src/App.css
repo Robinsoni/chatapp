@@ -1,0 +1,64 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background: #a7bcfe;
+ 
+  
+}
+.App{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  height: 100vh;
+}
+form.register {
+  width: 20%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 350px;
+}
+form.register > .container {
+ 
+  width: 80%;
+  gap: 20px;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 22px;
+  box-sizing: border-box;
+}
+input,button{
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #a7bcfe;
+}
+input[type='file']{
+  border: none;
+  display: none;
+}
+button{
+  background: #7c96ea;
+  color: white;
+  font-weight: bold;
+}
+
+label.avtar{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+  color: #a7bcfe;
+}
+ 
