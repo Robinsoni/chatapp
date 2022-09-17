@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import avatar from '../assets/img/addAvatar.png';
 const Register = () => {
     return (
@@ -15,7 +16,7 @@ const Register = () => {
                     <span>Add an avatar</span>
                 </label>   
                 <button type="submit">Sign up</button>
-                You do have an account? Login
+                <p>You do have an account? <Link to="/login">Login</Link></p>  
             </div>
         </form>
     );
