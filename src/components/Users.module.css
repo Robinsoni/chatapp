@@ -1,0 +1,23 @@
+
+div.users-list{
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+    height: 90%;
+    overflow-y: auto;
+    position: relative;
+}
+div.users-list > *{
+    padding: 5px;
+   
+}
+div.users-list >:first-child{
+    border-bottom: 1px solid rgb(83, 82, 82);
+    height: 30px;
+}
+div.users-list > ul{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}

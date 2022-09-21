@@ -1,0 +1,26 @@
+li{
+    width: 100%;
+    margin: 0;
+    list-style: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    
+}
+li:hover{
+    background:#242348;
+    cursor: pointer;
+    
+}
+li>img{
+    border-radius: 50%;
+}
+li  div{
+
+    margin-left: 5px;
+}
+li  div>:last-child{
+    font-weight: 100;
+    font-size: 12px;
+}

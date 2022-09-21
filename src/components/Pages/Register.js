@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import avatar from '../assets/img/addAvatar.png';
+import avatar from '../../assets/img/addAvatar.png';
 const Register = () => {
     return (
         <form className="register">

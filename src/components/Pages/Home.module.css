@@ -1,0 +1,17 @@
+.container{
+    border: 1px solid #403f62;
+    width: 60%;
+    height: 80%;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+}
+ 
+div.sidebar{
+    background: #3d3c61;
+    flex: 1 ;
+    color: white;
+}
+ 
+
+ 

@@ -1,0 +1,33 @@
+div.header{
+    background: #242348;
+    height: 10%;
+    padding: 10px;
+    display: flex;
+}
+ 
+div.left-header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+   /*  font-size: 10px; */
+}   
+div.left-header-container > :first-child{
+    font-weight: bold;
+}
+div.left-header-container > :last-child{
+    display: flex;
+    align-items: center;
+}
+div.left-header-container > :last-child>:last-child {
+    background: #5d5b8c;
+    
+    margin-left: 4px;
+    padding: 4px;
+    font-size: 10px;
+}
+div.left-header img{
+    border-radius: 50%;
+    margin-right: 4px;
+    
+}

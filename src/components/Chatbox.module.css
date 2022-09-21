@@ -1,0 +1,57 @@
+.chatbox{
+    flex: 2 ;
+} 
+div.header{
+    background: #5e5b8d;
+    height: 10%;
+    padding: 10px;
+}
+div.user-actions{
+    display: flex;
+   
+}
+div.chatbox > ul.chats{
+    background: #ddddf6;
+    height: 80%;
+    padding: 10px;
+}
+div.chatbox div.user-actions{
+    height: 10%;
+    padding: 10px;
+    background: white;
+}
+div.user-actions > input{
+    outline: none;
+    border: none;
+}
+div.right-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+div.right-header > div.actions{
+    display: flex;
+    flex-flow: row-reverse;
+    gap: 10px;
+}
+div.right-header > img {
+    cursor: pointer;
+}
+div.user-actions-button{
+
+    display: flex;
+    gap: 10px;
+    
+    align-items: center;
+   
+     
+}
+div.user-actions-button > * {
+    cursor: pointer;
+}
+div.user-actions-button > input{
+    background:#869ffe;
+    color: white;
+
+}

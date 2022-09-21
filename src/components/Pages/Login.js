@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import avatar from '../assets/img/addAvatar.png';
-const Login = () => {
+const Login = (props) => {
     return (
-        <form  className="register">
+        <form  onSubmit={props.login} className="register">
             <div className="container">
                 <h3>Robin Chat</h3>
                     Login

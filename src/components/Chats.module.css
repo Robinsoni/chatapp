@@ -1,0 +1,33 @@
+li.li-message:hover{
+    background:none;
+    cursor: default;
+} 
+li img.profile-img{
+    border-radius: 50%;
+}
+div.message-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+ li.li-message div.message{
+    background: white;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 1em;
+    border-radius: 0 10px 10px;
+}
+
+ li.yours-message {
+    display: flex;
+    flex-direction: row-reverse;
+}
+li.yours-message div.message{
+    background: #869ffe;
+    color: white;
+    border-radius: 10px 0 10px 10px;
+}
+li.yours-message > div.message-container{
+    flex-flow: row-reverse;
+}
