@@ -1,5 +1,6 @@
 .chatbox{
     flex: 2 ;
+   
 } 
 div.header{
     background: #5e5b8d;
@@ -23,6 +24,14 @@ div.chatbox div.user-actions{
 div.user-actions > input{
     outline: none;
     border: none;
+}
+div.user-actions > textarea{
+    outline: none;
+    border: none;
+    resize: none;
+ 
+     
+    
 }
 div.right-header{
     display: flex;
@@ -54,4 +63,12 @@ div.user-actions-button > input{
     background:#869ffe;
     color: white;
 
+}
+div.user-actions-button > textarea{
+    background:#869ffe;
+    color: white;
+
+}
+div.chatbox ul.chats{
+    overflow: auto;
 }
