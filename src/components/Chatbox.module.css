@@ -1,6 +1,6 @@
 .chatbox{
     flex: 2 ;
-   
+    scroll-behavior: smooth;
 } 
 div.header{
     background: #5e5b8d;
@@ -71,4 +71,29 @@ div.user-actions-button > textarea{
 }
 div.chatbox ul.chats{
     overflow: auto;
+}
+/*  */
+.gg-menu-round {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px;
+    border-radius: 24px;
+    border: 2px solid;
+}
+
+.gg-menu-round::before {
+    content: "";
+   display: block;
+   box-sizing: border-box;
+   position: absolute;
+   width: 10px;
+   height: 2px;
+   background: currentColor;
+   border-radius: 3px;
+   top: 4px;
+   left: 4px;
+   box-shadow: 0 4px 0, 0 8px 0
 }

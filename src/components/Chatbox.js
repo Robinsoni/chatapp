@@ -4,25 +4,24 @@ import add from '../assets/img/add.png';
 import cam from '../assets/img/cam.png';
 import attach from '../assets/img/attach.png';
 import img from '../assets/img/img.png'; 
-
+import menu_svg from '../assets/img/menu.svg';
 import userImg from '../assets/img/user-image1.jpg';
 import Chats from './Chats';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { ChatContext } from './context/ChatContext';
 import { AuthContext } from './context/AuthContext';
 import { arrayUnion, doc, onSnapshot, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore';
-import { db } from '../Firebase';
-
-import { v4 as uuid } from "uuid";
-import { async } from '@firebase/util';
- 
+import { db } from '../Firebase'; 
+import { v4 as uuid } from "uuid"; 
+import { CommonContext } from './context/CommonContext';
 const Chatbox = (props) => {
     const [chatTexts, setChatTexts] = useState([]);
     const {data:friends_details} = useContext(ChatContext);
     const {currentUser} = useContext(AuthContext);
     const textInputRef = useRef();
     const messageContainerRef = useRef();
-    
+    const menuRef = useRef(); 
+    const {dispatch:commonContextDispatch} = useContext(CommonContext);
     const combinedId =  currentUser.uid > friends_details.user.uid
                         ?(currentUser.uid + friends_details.user.uid)
                         :(friends_details.user.uid + currentUser.uid);
@@ -80,53 +79,79 @@ const Chatbox = (props) => {
             textInputRef.current.value = "";
         }
         
-    }
-    useEffect(() => {
-        messageContainerRef.current.lastElementChild?.scrollIntoView({ behavior: "smooth" });
+    };
+    function sleep(ms) {
+        console.log("let's try sleep function here ");
+        return new Promise(resolve => setTimeout(resolve, ms));
+    };
+      
+    useEffect(() => { 
+         
+        messageContainerRef.current?.scrollIntoView({ behavior: "smooth",block: "end", inline: "nearest" });
+        
+      
         if(chatTexts.length > 0){
             updateDoc(doc(db, "userChat", currentUser.uid), {
                 [combinedId + ".lastMessage.unread"]: false,   
             });
         }
     }, [chatTexts]);
-
+    
+    function HandleSidebarToggle() { 
+             commonContextDispatch({type:"toggle_sidebar"});
+    };
+    useEffect(() => { 
+        menuRef.current.addEventListener("click",HandleSidebarToggle); 
+        return () => {
+            console.log("cleanup toggle");  
+            menuRef.current?.removeEventListener("click",HandleSidebarToggle); 
+        };
+    },[]);
     
     return (
         <div className={classes.chatbox}>
             <div className={classes.header+" "+classes["right-header"]} >
+            <img ref = {menuRef} src = {menu_svg} alt="My Happy SVG"/> 
                 <div className={classes["user-name"]}> {friends_details.user.displayName}</div>
                 <div className={classes.actions}>
-                    <img height="25" width="25" src={more} alt="more" />
-                    <img height="25" width="25" src={add} alt="add" />
-                    <img height="25" width="25" src={cam} alt="cam" />
+                    <img height="25" width="25" src={more} alt="more" title="to be built"/>
+                    {/* <img height="25" width="25" src={add} alt="add" />
+                    <img height="25" width="25" src={cam} alt="cam" /> */}
                 </div>
             </div>
-            <ul ref ={messageContainerRef} className={classes.chats}>
+            <ul className={classes.chats}>
                 {chatTexts.map(
                     (msg) => {
                          let msgClass = msg.senderId === currentUser.uid ? "yours-message":"friends-message";
                          return(
-                             <Chats 
-                                 id = {msg.id}
-                                 msg_class = {msgClass}
-                                 msg_text = {msg.text}
-                                 user_img = {msg.photoURL}
-                             />
+                            <>
+                            <div className='dummy_chat'>
+
+                            </div>
+                                <Chats 
+                                    key={msg.id}
+                                    id = {msg.id}
+                                    msg_class = {msgClass}
+                                    msg_text = {msg.text}
+                                    user_img = {msg.photoURL}
+                                />
+                            </>
                          );
                     })
                 }
+                <div ref ={messageContainerRef} ></div>
             </ul>
             <div className={classes['user-actions']}>
                 <input  ref ={textInputRef} type="text"  placeholder='Type something...'/>
                 <div className={classes['user-actions-button']}>
-                    <input type="file" name="attachment" id='attachment'/>
+                    {/* <input type="file" name="attachment" id='attachment'/>
                     <input type="file" name="image" id ="img"/>
                     <label htmlFor="attachment">
                         <img  height="25" src={attach} alt="attach" />
                     </label>
                     <label htmlFor="img">
                         <img  height="25" src={img} alt="img" />
-                    </label>
+                    </label> */}
                     <input type="submit"  onClick = {userMsgHandler} value="Send"/>
                 </div>
             </div>

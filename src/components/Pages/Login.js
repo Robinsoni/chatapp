@@ -22,7 +22,7 @@ const Login = (props) => {
         <form  onSubmit={handleSubmit} className="register">
             <div className="container">
                 {ERR && <p style={{color:"red"}}>Login error</p>}
-                <h3>Robin Chat</h3>
+                <h3>Firebase Chat</h3>
                     Login
                 <input onFocus = {() => {setErr(false);}} type="text" className="email" placeholder="Email"/>
                 <input  onFocus = {() => {setErr(false);}} type="password" className="password"  placeholder="Password"/>  

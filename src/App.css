@@ -9,7 +9,7 @@
 }
 body{
   background: #a7bcfe;
- 
+  overflow: hidden;
   
 }
 .App{

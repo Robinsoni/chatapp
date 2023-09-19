@@ -1,13 +1,17 @@
 import classes from './Chats.module.css';
-
-import { Fragment } from 'react';
+import fallbackImg from '../assets/img/fallbackImg.png';
+import { Fragment, useState } from 'react';
 const Chats = ({msg_class,user_img, msg_text}) => {
-     
+    const [userImg, setUserImg] = useState(user_img);
+     function handleImageError(){
+        setUserImg(fallbackImg);
+     }
+      
     return(
         <Fragment>
         <li className={classes["li-message"] + " "+classes[msg_class]} >
             <div className={classes["message-container"]}>
-                <img className={classes["profile-img"]} height="30" width="30" src={user_img} alt="friend's image" />
+                <img className={classes["profile-img"]} height="30" width="30" src={userImg }     onError= {handleImageError}  />
                 <div className={classes["message"]}>{msg_text}</div>
             </div>
         </li>

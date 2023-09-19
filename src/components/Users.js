@@ -64,9 +64,7 @@ const Users = (props) => {
                     [combinedId + ".userInfo"]:{
                         uid: currentUser.uid,
                         displayName:currentUser.displayName,
-                        photoURL:currentUser.photoURL,
-                        
-
+                        photoURL:currentUser.photoURL, 
                     },
                     [combinedId+".date"]:serverTimestamp(),
                     
@@ -107,7 +105,7 @@ const Users = (props) => {
     /* console.log("robins user chat",Object.entries(userChats)); */
     var usersList;
     
-        usersList = Object.entries(userChats).sort((a,b) => a[1].date - b[1].date ? -1 : 1).map(
+        usersList = (userChats? Object.entries(userChats):[]).sort((a,b) => a[1].date - b[1].date ? -1 : 1).map(
             (a) => {
                 var unread = a[1].lastMessage && a[1].lastMessage.unread?a[1].lastMessage.unread:false;
                 if(friends_details.user.uid == a[1].userInfo.uid){

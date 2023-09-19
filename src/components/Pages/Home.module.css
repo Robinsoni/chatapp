@@ -12,6 +12,10 @@ div.sidebar{
     flex: 1 ;
     color: white;
 }
- 
-
+ /* 
+@media (max-width:700px) {
+    div.sidebar{
+        display: none;
+    }
+} */
  

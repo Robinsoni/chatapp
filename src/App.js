@@ -7,18 +7,14 @@ import Login from './components/Pages/Login';
 import Register from './components/Pages/Register';
 function App() {
   const {currentUser} = useContext(AuthContext);
-  console.log("**currentUser**",currentUser);
-   
+  console.log("**currentUser**",currentUser); 
   const ProtectedRoute = ({children}) => {
     if(!currentUser){
       console.log("**protected route", "");
       return <Navigate to="/login"/>
     } 
-      return children;
-  
-
-  }
-
+      return children; 
+  } 
   return (
       <div className="App">
         <Routes>
