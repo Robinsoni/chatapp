@@ -19,10 +19,12 @@ import {
 } from "firebase/firestore"; 
 import { ChatContext } from './context/ChatContext';
 import { AuthContext } from './context/AuthContext';
+
+import { CommonContext } from './context/CommonContext';
 var searchedUsers = [];
 const hr = <hr key="unique"/>;
 const Users = (props) => {
-    
+    const {dispatch:commonContextDispatch} = useContext(CommonContext);
     const {data:friends_details,dispatch} = useContext(ChatContext);
     const {currentUser} = useContext(AuthContext);
     const [userChats,setUserChats] = useState([]);
@@ -44,6 +46,7 @@ const Users = (props) => {
        const combinedId =  currentUser.uid > user.uid
                             ?(currentUser.uid + user.uid)
                             :(user.uid + currentUser.uid);
+                            commonContextDispatch({type:"toggle_sidebar"});
        try{
             const res = await getDoc(doc(db,"chats",combinedId));
             dispatch({type:"user_change",payload:user});

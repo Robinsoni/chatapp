@@ -1,8 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from "../../Firebase";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ChatContext } from '../context/ChatContext';
 const Login = (props) => {
+    const {_,dispatch} = useContext(ChatContext);        
     const [ERR,setErr] = useState(false);
     const navigate = useNavigate();
     async function handleSubmit(e){
@@ -16,7 +18,8 @@ const Login = (props) => {
         }catch(err){
             console.log("errdfsdf ** ",err);
             setErr(true);
-        }        
+        }
+        dispatch({type:"remove_friend",payload:null});
     };
     return (
         <form  onSubmit={handleSubmit} className="register">

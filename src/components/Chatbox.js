@@ -34,7 +34,7 @@ const Chatbox = (props) => {
             console.log("calling useEffect cleanup function in Chantbox");
           unsub();
         }  
-    }, [combinedId]);
+    }, [combinedId ]);
 
     
     
