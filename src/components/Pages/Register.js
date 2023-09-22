@@ -7,6 +7,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { useState } from 'react';
 const Register = () => {
     const [ERR,setErr] = useState(false);
+    const [firebase_error,setErrorMessage] = useState("");
     async function formSubmitHandeler(e){
         e.preventDefault();
         var username    =  e.target[0].value;
@@ -34,21 +35,28 @@ const Register = () => {
                         });
                         await setDoc(doc(db,"userChat",res.user.uid),{});
                     }catch(err){
+                        setErrorMessage("You don't have permission to create new user");
                         console.log("errdfsdf1 ** ",err);
                         setErr(true);
                     }
                 });
             });
+
         }
         catch(err){
-            console.log("errdfsdf ** ",err);
+            if(err.message.includes("email-already-in-use")){ 
+                setErrorMessage("Email already in use");
+            }
+            console.log("errdfsdf ** ",err.message);
             setErr(true);
         }        
     };
     return (
         <form className="register" onSubmit = {formSubmitHandeler}>
             <div className="container">
-            {ERR && <p style={{color:"red"}}>Something went wrong</p>}
+            {ERR && <p style={{color:"red"}}>
+                <span>{firebase_error}</span>
+                </p>}
                 <h3>Robin Chat</h3>
                     Register
                 <input onFocus = {() => {setErr(false);}} type="text" className="username" placeholder="Username"/>
