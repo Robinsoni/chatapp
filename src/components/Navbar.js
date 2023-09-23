@@ -1,6 +1,5 @@
 
-import classes from './Navbar.module.css';
-import avtar from   '../assets/img/avtar.jpg';
+import classes from './Navbar.module.css'; 
 import { signOut } from 'firebase/auth';
 import { auth } from '../Firebase';
 
