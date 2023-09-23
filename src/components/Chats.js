@@ -2,6 +2,7 @@ import classes from './Chats.module.css';
 import fallbackImg from '../assets/img/fallbackImg.png';
 import { Fragment, useState } from 'react';
 const Chats = ({msg_class,user_img, msg_text}) => {
+    console.log("user chat img",user_img);
     const [userImg, setUserImg] = useState(user_img);
      function handleImageError(){
         setUserImg(fallbackImg);

@@ -6,7 +6,7 @@ import { db } from '../Firebase';
 import { AuthContext } from './context/AuthContext';
 import { ChatContext } from './context/ChatContext';
 import classes from './User.module.css';
-const User = ({displayName,LastMessage,profileImg,userSelectHandler,payload, unread}) => {
+const User = ({displayName,LastMessage,profileImg,userSelectHandler,payload, unread,isSearched}) => {
     
     const [userImg, setUserImg] = useState(profileImg);
     const [isImageLoaded, setIsImageLoaded] =  useState(false);
@@ -30,6 +30,7 @@ const User = ({displayName,LastMessage,profileImg,userSelectHandler,payload, unr
                         <div className={classes["blue-dot"]}></div>
                     </div>
                 }
+                {isSearched && <span>Add User</span>}
             </div>
         </li>
     );

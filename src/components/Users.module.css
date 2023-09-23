@@ -12,7 +12,7 @@ div.users-list > *{
    
 }
 div.users-list >:first-child{
-    border-bottom: 1px solid rgb(83, 82, 82);
+    /* border-bottom: 1px solid rgb(83, 82, 82); */
     height: 30px;
 }
 div.users-list > ul{

@@ -29,6 +29,7 @@ const Users = (props) => {
     const {currentUser} = useContext(AuthContext);
     const [userChats,setUserChats] = useState([]);
     const [searchedUsersList, setSearchedUsers] = useState(searchedUsers);
+    const [isLoading,setIsLoding] = useState(false);
     useEffect(() => {
         if(currentUser.uid ){
             const unsub = onSnapshot(doc(db,"userChat",currentUser.uid),(doc) =>{
@@ -42,6 +43,7 @@ const Users = (props) => {
     }, [currentUser.uid]);
     
     const userSelectHandler = async (user) => {
+       
         setSearchedUsers([]); 
        const combinedId =  currentUser.uid > user.uid
                             ?(currentUser.uid + user.uid)
@@ -78,6 +80,7 @@ const Users = (props) => {
         } catch(err){console.log("error while creating the userChats ** ", err);}
     };
     const handleQueryResult = async (res) =>{
+        setIsLoding(true);
             try{
                     console.log("queryResult",res);
                     const citiesRef = collection(db, "users");
@@ -94,13 +97,16 @@ const Users = (props) => {
                                 LastMessage = "" 
                                 payload = {doc.data()}
                                 userSelectHandler = {userSelectHandler}
+                                isSearched = {true}
                             />
                         );
                         console.log(doc.id, " => ", doc.data(), searchedUsers);
                         setSearchedUsers(searchedUsers);
                     });
+                    setIsLoding(false);
             }catch(err){
                 console.log("**err",err);
+                setIsLoding(false);
             };
     }
     console.log("**users list**",searchedUsersList );
@@ -123,6 +129,7 @@ const Users = (props) => {
                                 unread = {unread}
                                 payload = {a[1].userInfo}
                                 userSelectHandler = {userSelectHandler} 
+                                isSearched = {false}
                             />
                   );  
                 }
@@ -130,11 +137,11 @@ const Users = (props) => {
     
     return(
         <div className={classes["users-list"]}>
-            <Search handleQueryString = {handleQueryResult}/>
+            <Search handleQueryString = {handleQueryResult} isLoading={isLoading}/>
             <ul>
                 {searchedUsersList.length > 0 && [...searchedUsersList,hr] }
                 { usersList }
-               {/*  <User profileImg ={userImg} displayName="Robin Soni"/>   */}
+               
             </ul>
         </div>
     );

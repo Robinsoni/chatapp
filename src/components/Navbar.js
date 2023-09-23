@@ -16,7 +16,7 @@ const Navbar = (props) =>{
     return (
         <div className={classes.header+" "+classes["left-header"]}>
             <div className={classes["left-header-container"]}>
-                <span>Firebase Chat</span>
+                <span>Robin's Chat</span>
                 <div>
                     <img height = "23" width="23" src={userImg} alt="avtar"  onError= {handleImageError}/>
                     <span>{currentUser.displayName?currentUser.displayName:"None"}</span>
