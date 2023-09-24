@@ -4,6 +4,7 @@ li.li-message:hover{
 } 
 li img.profile-img{
     border-radius: 50%;
+    background: #cac8c8;;
 }
 div.message-container{
     display: flex;
@@ -12,7 +13,7 @@ div.message-container{
     
 }
  li.li-message div.message{
-    background: white;
+    background: #cac8c8;
     padding: 10px;
     font-weight: 500;
     font-size: 1em;
