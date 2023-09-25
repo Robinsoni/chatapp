@@ -17,7 +17,7 @@ const Search = (props) => {
                     onKeyDown ={handleKey} 
                     onChange = {handleInput} 
                     style={{background: "#3d3c61",color: "#fdfdfd", border:"none",padding:"0"}}    
-                    placeholder="Find a user" type="search"
+                    placeholder="Find by email or userId" type="search"
                 />
                 {
                     props.isLoading ?<FontAwesomeIcon icon={faSpinner} spinPulse style={{ color:"#ddddf6"}} />:   

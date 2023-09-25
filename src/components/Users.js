@@ -28,7 +28,7 @@ const Users = (props) => {
     const {data:friends_details,dispatch} = useContext(ChatContext);
     const {currentUser} = useContext(AuthContext);
     const [userChats,setUserChats] = useState([]);
-    const [searchedUsersList, setSearchedUsers] = useState(searchedUsers);
+    const [searchedUsersList, setSearchedUsers] = useState([]);
     const [isLoading,setIsLoding] = useState(false);
     useEffect(() => {
         if(currentUser.uid ){
@@ -41,10 +41,12 @@ const Users = (props) => {
             }
         }
     }, [currentUser.uid]);
+
     
     const userSelectHandler = async (user) => {
        
         setSearchedUsers([]); 
+        console.log(" user item clicked ** ");
        const combinedId =  currentUser.uid > user.uid
                             ?(currentUser.uid + user.uid)
                             :(user.uid + currentUser.uid);
@@ -82,13 +84,31 @@ const Users = (props) => {
     const handleQueryResult = async (res) =>{
         setIsLoding(true);
             try{
-                    console.log("queryResult",res);
-                    const citiesRef = collection(db, "users");
+                const citiesRef = collection(db, "users");
+                console.log("queryResult ",citiesRef);
+                
                     const q = query(citiesRef, where("displayName", "==", res));
+                    const q2 = query(citiesRef, where("email", "==", res));
                     const querySnapshot = await getDocs(q);
+                    const querySnapshot2 = await getDocs(q2);
                     searchedUsers = [];   
                     setSearchedUsers([]);
                     querySnapshot.forEach((doc) => {
+                        searchedUsers.push(
+                            <User 
+                                key= {doc.data().uid} 
+                                profileImg ={doc.data().photoURL} 
+                                displayName = {doc.data().displayName} 
+                                LastMessage = "" 
+                                payload = {doc.data()}
+                                userSelectHandler = {userSelectHandler}
+                                isSearched = {true}
+                            />
+                        );
+                        console.log(doc.id, " => ", doc.data(), searchedUsers);
+                        setSearchedUsers(searchedUsers);
+                    });
+                    querySnapshot2.forEach((doc) => {
                         searchedUsers.push(
                             <User 
                                 key= {doc.data().uid} 
